@@ -790,6 +790,12 @@
             .map-frame {
                 height: 250px;
             }
+
+            /* Justera storlek på intrologo för mobil */
+            .intro-logo-img {
+                width: 80%;
+                max-width: 350px;
+            }
         }
     </style>
 </head>
@@ -864,7 +870,7 @@
                     <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">15.</span> Halloumi queso</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Grillad halloumi med marmelad.</span><span class="dish-desc lang-en">Grilled halloumi with marmalade.</span></div>
                     <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">16.</span> Manchego frito</span><span class="dish-price">85:-</span></div><span class="dish-desc lang-sv">Friterad manchego med honung och marmelad.</span><span class="dish-desc lang-en">Fried manchego with honey and marmalade.</span></div>
                     <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">17.</span> Queso a la parrilla (Chevre)</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Grillad chevre med honung och marmelad.</span><span class="dish-desc lang-en">Grilled chevre with honey and marmalade.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">18.</span> Nachos con queso</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Nachos med ost, guacamole och salsa.</span><span class="dish-desc lang-en">Nachos with cheese, guacamole and salsa.</span></div>
+                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">18.</span> Nachos con queso</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Nachos med ost, guacamole, salsa.</span><span class="dish-desc lang-en">Nachos with cheese, guacamole and salsa.</span></div>
                 </div>
             </div>
 
@@ -1006,7 +1012,7 @@
             setTimeout(() => {
                 document.getElementById('intro-screen').classList.add('hidden');
                 document.body.classList.add('intro-finished');
-            }, 2500);
+            }, 4500); // <--- HÄR ÄR ÄNDRINGEN (ÖKAD TID)
         });
 
         // Navbar Scroll
