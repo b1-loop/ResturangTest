@@ -3,7 +3,7 @@
 on:
   # Körs när du pushar till main-branchen
   push:
-    branches: ["main"]
+    branches: ["master"]
 
   # Tillåter att du kör den manuellt från Actions-fliken
   workflow_dispatch:
