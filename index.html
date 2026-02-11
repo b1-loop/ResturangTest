@@ -60,16 +60,12 @@
             transition: opacity 1.5s ease-out, visibility 1.5s;
         }
 
-        /* HÄR ÄR DEN NYA KODEN FÖR LOGGAN
-           Vi använder translateZ(0) för att tvinga mobilen att rendera skarpt
-        */
+        /* LOGO ANIMATION */
         .intro-logo-img {
             width: 300px;
             max-width: 80%;
             opacity: 0;
-            /* Animationen körs i 3.5 sekunder */
             animation: smokeReveal 3.5s ease-out forwards;
-            /* Hårdvaruacceleration för mobiler */
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             transform: translateZ(0);
@@ -82,9 +78,6 @@
             pointer-events: none;
         }
 
-        /* NY ANIMATION: "CRYSTAL CLEAR"
-           Tar bort blur helt på slutet för att undvika suddighet på mobil
-        */
         @keyframes smokeReveal {
             0% {
                 opacity: 0;
@@ -93,7 +86,6 @@
             }
 
             60% {
-                /* Redan här börjar vi göra den skarp */
                 opacity: 0.9;
                 filter: blur(2px) grayscale(20%);
             }
@@ -101,7 +93,6 @@
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
-                /* VIKTIGT: Inget filter alls på slutet */
                 filter: none;
             }
         }
@@ -214,7 +205,7 @@
                 color: var(--gold);
             }
 
-        /* Knappar i Nav */
+        /* Knappar */
         .btn-nav {
             padding: 10px 20px;
             border: 1px solid var(--gold);
@@ -474,7 +465,7 @@
                 transform: translateY(0);
             }
 
-        /* --- 8. FOOTER (HOVMÄSTARE) --- */
+        /* --- 8. FOOTER --- */
         footer {
             background: #000;
             border-top: 2px solid var(--gold);
@@ -517,7 +508,6 @@
             font-size: 1rem;
         }
 
-        /* KLICKBARA NUMMER I FOOTER */
         .contact-phones a {
             display: inline-block;
             color: #fff;
@@ -541,7 +531,6 @@
             margin-right: 8px;
         }
 
-        /* RECENSIONER - RECEPTIONIST STIL */
         .reviews-badge {
             display: inline-block;
             margin-bottom: 20px;
@@ -569,7 +558,6 @@
                 color: #fff;
             }
 
-        /* NY DESIGN FÖR ÖPPETTIDER */
         .opening-hours-card {
             margin-top: 20px;
             border: 1px solid var(--gold);
@@ -608,12 +596,11 @@
                 color: #fff;
                 text-transform: uppercase;
             }
-            /* Dagarna i vitt */
+
             .time-row span:last-child {
                 color: var(--gold);
                 font-weight: bold;
             }
-        /* Tiderna i guld */
 
         .map-frame {
             width: 100%;
@@ -623,7 +610,7 @@
             filter: grayscale(100%) invert(90%) contrast(90%) sepia(20%) hue-rotate(10deg);
         }
 
-        /* --- 9. MODALS (BOKA & BESTÄLL) --- */
+        /* --- 9. MODALS --- */
         .modal {
             display: none;
             position: fixed;
@@ -638,15 +625,26 @@
             justify-content: center;
         }
 
+        /* Justerad modal-content för bokningswidgeten */
         .modal-content {
             background-color: #111;
             border: 2px solid var(--gold);
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
+            width: 95%;
+            max-width: 600px;
+            /* För att hantera långa widgets på små skärmar: */
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 10px;
             position: relative;
             text-align: center;
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Specifik styling för Order Modal (om den behöver mer padding) */
+        #orderModal .modal-content {
+            padding: 40px;
+            max-width: 500px;
+            overflow-y: visible;
         }
 
         .close-modal {
@@ -657,6 +655,7 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 10;
         }
 
             .close-modal:hover {
@@ -669,39 +668,6 @@
             margin-bottom: 20px;
         }
 
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-            .form-group label {
-                display: block;
-                color: #ccc;
-                margin-bottom: 5px;
-                font-size: 0.9rem;
-            }
-
-            .form-group input, .form-group select {
-                width: 100%;
-                padding: 12px;
-                background: #222;
-                border: 1px solid #444;
-                color: #fff;
-            }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: var(--gold);
-            border: none;
-            font-weight: bold;
-            font-family: 'Cinzel', serif;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Delivery Buttons */
         .delivery-options {
             display: flex;
             flex-direction: column;
@@ -768,12 +734,11 @@
                 margin-bottom: 3px;
             }
 
-        /* MOBILANPASSNING */
         @media (max-width: 899px) {
             nav {
                 display: none;
             }
-            /* Döljer vanlig nav på mobil */
+
             .mobile-action-bar {
                 display: flex;
             }
@@ -804,7 +769,6 @@
                 height: 250px;
             }
 
-            /* Justera storlek på intrologo för mobil */
             .intro-logo-img {
                 width: 80%;
                 max-width: 350px;
@@ -858,55 +822,174 @@
             <div class="section-header">
                 <h2>TAPAS</h2>
                 <div class="divider"></div>
-                <p class="lang-sv">Spanska smaker med en orientalisk twist</p>
-                <p class="lang-en">Spanish flavors with an oriental twist</p>
+                <p class="lang-sv">Spanska tapas med en twist från det orientaliska köket</p>
+                <p class="lang-en">Spanish tapas with a twist from oriental cuisine</p>
             </div>
 
             <div class="menu-grid">
                 <div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">1.</span> Calamares a la romana</span><span class="dish-price">79:-</span></div><span class="dish-desc lang-sv">Friterade bläckfiskringar med aioli.</span><span class="dish-desc lang-en">Fried calamari rings with aioli.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">2.</span> Gambas al ajillo</span><span class="dish-price">99:-</span></div><span class="dish-desc lang-sv">Heta tigerräkor frästa i vitlök, chili och olivolja.</span><span class="dish-desc lang-en">Spicy tiger prawns sautéed in garlic, chili, and olive oil.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">3.</span> Queso feta batido</span><span class="dish-price">89:-</span></div><span class="dish-desc lang-sv">Krämig vispad fetaost med ricotta, friterat bröd.</span><span class="dish-desc lang-en">Creamy whipped feta with ricotta, fried bread.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">4.</span> Alitas de pollo</span><span class="dish-price">75:-</span></div><span class="dish-desc lang-sv">Kycklingvingar med salsasås.</span><span class="dish-desc lang-en">Chicken wings with salsa sauce.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">5.</span> Enchilada de pollo</span><span class="dish-price">75:-</span></div><span class="dish-desc lang-sv">Tortilla med kyckling, guacamole, salsa, ost.</span><span class="dish-desc lang-en">Tortilla with chicken, guacamole, salsa, cheese.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">6.</span> Trozos de cordero</span><span class="dish-price">79:-</span></div><span class="dish-desc lang-sv">Frästa lammbitar med vitlök och chili.</span><span class="dish-desc lang-en">Fried lamb pieces with garlic and chili.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">7.</span> Chorizo a la sidra</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Ciderkokt chorizo.</span><span class="dish-desc lang-en">Cider cooked chorizo.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">8.</span> Datiles</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Färska baconlindade dadlar.</span><span class="dish-desc lang-en">Dates wrapped in bacon.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">9.</span> Enchilada de carne</span><span class="dish-price">79:-</span></div><span class="dish-desc lang-sv">Enchilada med köttfärs, guacamole, salsa, chipotle.</span><span class="dish-desc lang-en">Enchilada with minced meat, guacamole, salsa.</span></div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">1.</span> Calamares a la romana</span><span class="dish-price">79:-</span></div>
+                        <span class="dish-desc lang-sv">Friterade bläckfiskringar med aioli.</span>
+                        <span class="dish-desc lang-en">Fried calamares with aioli.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">2.</span> Gambas al ajillo</span><span class="dish-price">99:-</span></div>
+                        <span class="dish-desc lang-sv">Vitlöksfrästa tigerräkor.</span>
+                        <span class="dish-desc lang-en">Garlic tiger prawns.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">3.</span> Queso feta batido con ricotta</span><span class="dish-price">89:-</span></div>
+                        <span class="dish-desc lang-sv">Vispad feta med ricotta med friterat bröd.</span>
+                        <span class="dish-desc lang-en">Whipped feta with ricotta with fried bread.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">4.</span> Alitas de pollo</span><span class="dish-price">75:-</span></div>
+                        <span class="dish-desc lang-sv">Kycklingvingar med salsasås.</span>
+                        <span class="dish-desc lang-en">Chicken wings with salsasauce.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">5.</span> Enchilada de pollo</span><span class="dish-price">89:-</span></div>
+                        <span class="dish-desc lang-sv">Tortilla med kyckling, guacamole, salsa, aioli, ost, vitlök, ris.</span>
+                        <span class="dish-desc lang-en">Tortilla with chicken, guacamole, aioli, salsa, cheese, garlic, rice.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">6.</span> Trozos de cordero</span><span class="dish-price">89:-</span></div>
+                        <span class="dish-desc lang-sv">Frästa lammbitar med tzatziki.</span>
+                        <span class="dish-desc lang-en">Grilled lamb chunks with tzatziki.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">7.</span> Chorizo a la sidra</span><span class="dish-price">85:-</span></div>
+                        <span class="dish-desc lang-sv">Ciderkokt chorizo stekt i rödvin och honung.</span>
+                        <span class="dish-desc lang-en">Cider-cooked chorizo fried in red wine and honey.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">8.</span> Datiles envueltos en tonico</span><span class="dish-price">75:-</span></div>
+                        <span class="dish-desc lang-sv">Färska baconlindade dadlar.</span>
+                        <span class="dish-desc lang-en">Dates wrapped in bacon.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">9.</span> Enchilada de carne</span><span class="dish-price">89:-</span></div>
+                        <span class="dish-desc lang-sv">Enchilada med ris, köttfärs, guacamole, salsa, chipotle, ost, vitlök.</span>
+                        <span class="dish-desc lang-en">Enchilada with rice, minced meat, guacamole, salsa, chipotle, cheese, garlic.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">10.</span> Patatas bravas</span><span class="dish-price">69:-</span></div>
+                        <span class="dish-desc lang-sv">Hemlagad friterad klyftpotatis med aioli och chipotle.</span>
+                        <span class="dish-desc lang-en">Homemade fried potato wedges with aioli and chipotle.</span>
+                    </div>
                 </div>
+
                 <div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">10.</span> Patatas bravas</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Friterad potatis med aioli och het chipotle.</span><span class="dish-desc lang-en">Fried potatoes with aioli and spicy chipotle.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">11.</span> Patatas Dulces</span><span class="dish-price">75:-</span></div><span class="dish-desc lang-sv">Friterad sötpotatis med aioli.</span><span class="dish-desc lang-en">Fried sweet potatoes with aioli.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">12.</span> Pan con ajo</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Vitlöksbröd.</span><span class="dish-desc lang-en">Garlic bread.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">13.</span> Champiñones al ajillo</span><span class="dish-price">65:-</span></div><span class="dish-desc lang-sv">Vitlöksfrästa champinjoner.</span><span class="dish-desc lang-en">Garlic fried mushrooms.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">14.</span> Aceitunas con Feta</span><span class="dish-price">65:-</span></div><span class="dish-desc lang-sv">Marinerade oliver, marinerad fetaost.</span><span class="dish-desc lang-en">Marinated olives, marinated feta.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">15.</span> Halloumi queso</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Grillad halloumi med marmelad.</span><span class="dish-desc lang-en">Grilled halloumi with marmalade.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">16.</span> Manchego frito</span><span class="dish-price">85:-</span></div><span class="dish-desc lang-sv">Friterad manchego med honung och marmelad.</span><span class="dish-desc lang-en">Fried manchego with honey and marmalade.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">17.</span> Queso a la parrilla (Chevre)</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Grillad chevre med honung och marmelad.</span><span class="dish-desc lang-en">Grilled chevre with honey and marmalade.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">18.</span> Nachos con queso</span><span class="dish-price">69:-</span></div><span class="dish-desc lang-sv">Nachos med ost, guacamole, salsa.</span><span class="dish-desc lang-en">Nachos with cheese, guacamole and salsa.</span></div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">11.</span> Patatas Dulces</span><span class="dish-price">75:-</span></div>
+                        <span class="dish-desc lang-sv">Friterad sötpotatis med aioli.</span>
+                        <span class="dish-desc lang-en">Fried sweet potato with aioli.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">12.</span> Pan con ajo</span><span class="dish-price">65:-</span></div>
+                        <span class="dish-desc lang-sv">Vitlöksbröd med tzatziki.</span>
+                        <span class="dish-desc lang-en">Garlic bread with tzatziki.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">13.</span> Champiñones al ajillo</span><span class="dish-price">75:-</span></div>
+                        <span class="dish-desc lang-sv">Vitlöksfrästa champinjoner.</span>
+                        <span class="dish-desc lang-en">Garlic fried mushrooms.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">14.</span> Hummus y aguacate</span><span class="dish-price">85:-</span></div>
+                        <span class="dish-desc lang-sv">Hummus och avocadoröra serveras med friterat bröd.</span>
+                        <span class="dish-desc lang-en">Hummus and avocado salad served with fried bread.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">15.</span> Halloumi queso a la parilla</span><span class="dish-price">75:-</span></div>
+                        <span class="dish-desc lang-sv">Grillad halloumi med marmelad och honung.</span>
+                        <span class="dish-desc lang-en">Grilled Halloumi cheese with jam and honey.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">16.</span> Manchego frito</span><span class="dish-price">85:-</span></div>
+                        <span class="dish-desc lang-sv">Friterad manchego med honung och marmelad.</span>
+                        <span class="dish-desc lang-en">Fried manchego cheese with honey and marmalade.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">17.</span> Queso a la parrilla con miel</span><span class="dish-price">85:-</span></div>
+                        <span class="dish-desc lang-sv">Grillad chèvre med honung och marmelad.</span>
+                        <span class="dish-desc lang-en">Grilled chèvre with honey and marmalade.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">18.</span> Nachos con queso y guacamole</span><span class="dish-price">79:-</span></div>
+                        <span class="dish-desc lang-sv">Nachos med guacamole, salsa & jalapenos.</span>
+                        <span class="dish-desc lang-en">Nachos with guacamole, salsa & jalapenos.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">19.</span> Nachos con carne molida</span><span class="dish-price">99:-</span></div>
+                        <span class="dish-desc lang-sv">Nachos med köttfärs, ost och sås.</span>
+                        <span class="dish-desc lang-en">Nachos with minced meat, cheese and sauce.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">20.</span> Pimientos de padron</span><span class="dish-price">85:-</span></div>
+                        <span class="dish-desc lang-sv">Stekta padrones i olivolja med lime, paprikapulver och parmesan.</span>
+                        <span class="dish-desc lang-en">Fried peppers in olive oil with lime, paprika and parmesan.</span>
+                    </div>
                 </div>
             </div>
 
             <div class="section-header fade-in" id="varmratter" style="margin-top: 6rem;">
                 <h2>BAZAR</h2>
                 <div class="divider"></div>
-                <p class="lang-sv">Huvudrätter från grillen</p>
-                <p class="lang-en">Main courses from the grill</p>
+                <p class="lang-sv">Comidas calientes / Varmrätter</p>
+                <p class="lang-en">Comidas calientes / Main Courses</p>
             </div>
 
             <div class="menu-grid fade-in">
                 <div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">21.</span> Salmón al horno</span><span class="dish-price">279:-</span></div><span class="dish-desc lang-sv">Ugnsbakad laxfilé med klyftpotatis, hemlagad sås.</span><span class="dish-desc lang-en">Oven-baked salmon fillet with potato wedges.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">22.</span> Pollo al ajillo con arroz</span><span class="dish-price">195:-</span></div><span class="dish-desc lang-sv">Kycklinggryta med ris och vitlök.</span><span class="dish-desc lang-en">Chicken stew with rice and garlic.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">23.</span> Hamburguesa de la Casa</span><span class="dish-price">189:-</span></div><span class="dish-desc lang-sv">Högrevsburgare med dressing, pommes, ost.</span><span class="dish-desc lang-en">House burger with dressing, fries, cheese.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">24.</span> Trozos de cordero</span><span class="dish-price">279:-</span></div><span class="dish-desc lang-sv">Grillade lammbitar med klyftpotatis, sås.</span><span class="dish-desc lang-en">Grilled lamb chunks with potato wedges, sauce.</span></div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">21.</span> Salmón al horno</span><span class="dish-price">279:-</span></div>
+                        <span class="dish-desc lang-sv">Ugnsbakad laxfilé med klyftpotatis, hemlagad sås och sallad.</span>
+                        <span class="dish-desc lang-en">Oven-baked salmon fillet with potato wedges, homemade sauce and salad.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">22.</span> Pollo al ajillo con arroz</span><span class="dish-price">245:-</span></div>
+                        <span class="dish-desc lang-sv">Kycklingsgryta med ris och tzatziki.</span>
+                        <span class="dish-desc lang-en">Chicken stew with rice and tzatziki.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">23.</span> Hamburgesa de la casa 180g</span><span class="dish-price">189:-</span></div>
+                        <span class="dish-desc lang-sv">Husets egna högrevsburgare (70% högrev, 30% bringa). Serveras med sallad, tomat, lök, ost, hemmagjord dressing och pommes.</span>
+                        <span class="dish-desc lang-en">The house's own burger (100% beef). Served with lettuce, tomato, onion, cheese, homemade dressing and french fries.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">24.</span> Paella con gambas y pollo</span><span class="dish-price">279:-</span></div>
+                        <span class="dish-desc lang-sv">Paella med tigerräkor och kyckling.</span>
+                        <span class="dish-desc lang-en">Paella with tiger prawns and chicken.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">25.</span> Entrecoté</span><span class="dish-price">289:-</span></div>
+                        <span class="dish-desc lang-sv">Entrecoté med potatis, sallad, riven manchego ost och champinjonsås.</span>
+                        <span class="dish-desc lang-en">Entrecoté with potatoes, salad, grated manchego cheese and mushroom sauce.</span>
+                    </div>
                 </div>
                 <div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">25.</span> Pincho de carne</span><span class="dish-price">269:-</span></div><span class="dish-desc lang-sv">Oxfilé på spett med pepparsås och klyftpotatis.</span><span class="dish-desc lang-en">Oxfillet on spit with pepper sauce and potatoes.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">26.</span> Parrillada mixta</span><span class="dish-price">289:-</span></div><span class="dish-desc lang-sv">Grillmix: Kyckling, Lamm, Oxfilé med tillbehör.</span><span class="dish-desc lang-en">Grill mix: Chicken, Lamb, Beef with sides.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">27.</span> Pinch de cordero</span><span class="dish-price">199:-</span></div><span class="dish-desc lang-sv">Lammfärsspett med persiskt ris, grillad tomat.</span><span class="dish-desc lang-en">Lamb skewers with persian rice, grilled tomato.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">28.</span> Estofado vegetariano</span><span class="dish-price">165:-</span></div><span class="dish-desc lang-sv">Vegetarisk gryta med ris, yoghurt, salsa.</span><span class="dish-desc lang-en">Vegetarian stew with rice, yogurt, salsa.</span></div>
-                    <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">29.</span> Halloumiburgare</span><span class="dish-price">149:-</span></div><span class="dish-desc lang-sv">Burgare med halloumi, svamp, chipotlesås.</span><span class="dish-desc lang-en">Halloumi burger with mushrooms, chipotle sauce.</span></div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">26.</span> Plato de parrillada mixta</span><span class="dish-price">289:-</span></div>
+                        <span class="dish-desc lang-sv">Grillmix (Kyckling, Lammbitar och Oxfilé) med pepparsås och klyftpotatis.</span>
+                        <span class="dish-desc lang-en">Grillmix (Chicken, Lamb bits and Ox fillet) with pepper sauce and potato wedges.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">27.</span> Pinch de cordero (Kobide)</span><span class="dish-price">249:-</span></div>
+                        <span class="dish-desc lang-sv">Lammfärsspett grillad på lavagrill med persiskt ris, grillade tomater, sallad, rödlök och persilja. Serveras med tzatziki.</span>
+                        <span class="dish-desc lang-en">Lamb skewers grilled on lava grill with persian rice, grilled tomatoes, salad, red onions and parsley. Served with tzatziki.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">28.</span> Estofado vegetariano</span><span class="dish-price">189:-</span></div>
+                        <span class="dish-desc lang-sv">Vegetarisk gryta med ris och tzatziki.</span>
+                        <span class="dish-desc lang-en">Vegetarian stew with rice and tzatziki.</span>
+                    </div>
+                    <div class="dish">
+                        <div class="dish-header"><span class="dish-title"><span class="dish-num">29.</span> Halloumiburgare</span><span class="dish-price">199:-</span></div>
+                        <span class="dish-desc lang-sv">Serveras med sallad, tomat, lök, ost, stekta champinjoner, chipotlesås och pommes.</span>
+                        <span class="dish-desc lang-en">Served with lettuce, tomato, fried onion, cheese, mushrooms, chipotle dressing and french fries.</span>
+                    </div>
                 </div>
             </div>
 
@@ -915,9 +998,21 @@
                 <div class="divider"></div>
             </div>
             <div class="menu-grid fade-in">
-                <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">30.</span> Affogato</span><span class="dish-price">119:-</span></div><span class="dish-desc lang-sv">Glass, kaffe, Kahlua, grädde, chokladsås.</span><span class="dish-desc lang-en">Ice cream, coffee, Kahlua, cream, chocolate sauce.</span></div>
-                <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">31.</span> Tarta de Chocolate</span><span class="dish-price">99:-</span></div><span class="dish-desc lang-sv">Chokladtårta med bär och glass.</span><span class="dish-desc lang-en">Chocolate cake with berries and ice cream.</span></div>
-                <div class="dish"><div class="dish-header"><span class="dish-title"><span class="dish-num">32.</span> Marengue</span><span class="dish-price">99:-</span></div><span class="dish-desc lang-sv">Marängsviss.</span><span class="dish-desc lang-en">Meringue swiss.</span></div>
+                <div class="dish">
+                    <div class="dish-header"><span class="dish-title"><span class="dish-num">30.</span> Churros med vaniljglass</span><span class="dish-price">99:-</span></div>
+                    <span class="dish-desc lang-sv">Churros med vaniljglass och chokladsås.</span>
+                    <span class="dish-desc lang-en">Churros with vanilla ice cream and chocolate sauce.</span>
+                </div>
+                <div class="dish">
+                    <div class="dish-header"><span class="dish-title"><span class="dish-num">31.</span> Crèma Catalana</span><span class="dish-price">99:-</span></div>
+                    <span class="dish-desc lang-sv">Crèma Catalana med apelsin och kanel.</span>
+                    <span class="dish-desc lang-en">Crèma Catalana orange and cinnamon.</span>
+                </div>
+                <div class="dish">
+                    <div class="dish-header"><span class="dish-title"><span class="dish-num">32.</span> Marabou Enchilada</span><span class="dish-price">99:-</span></div>
+                    <span class="dish-desc lang-sv">Chocolate Enchilada.</span>
+                    <span class="dish-desc lang-en">Chocolate Enchilada.</span>
+                </div>
             </div>
         </div>
     </div>
@@ -940,17 +1035,15 @@
                     <div class="contact-phones">
                         <p style="font-size:0.9rem; color:#aaa; margin-top:10px;">Ring oss för bokning:</p>
                         <a href="tel:0737735304"><i class="fas fa-phone-alt"></i> 073-773 53 04</a>
-                        <a href="tel:0760442203"><i class="fas fa-phone-alt"></i> 076-044 22 03</a>
                     </div>
 
                     <div style="margin-top:15px;">
                         <a href="mailto:muchachotapas@gmail.com" style="color:var(--gold); text-decoration:none;">muchachotapas@gmail.com</a>
-                        <a href="mailto:info@muchacho.se" style="color:var(--gold); text-decoration:none;">info@muchacho.se</a>
                     </div>
                 </div>
 
                 <div class="opening-hours-card">
-                    <div class="time-row"><span class="lang-sv">Söndag – Torsdag</span><span class="lang-en">Sunday – Thursday</span> <span>12:00 – 00:00</span></div>
+                    <div class="time-row"><span class="lang-sv">Söndag – Torsdag</span><span class="lang-en">Sunday – Thursday</span> <span>15:00 – 00:00</span></div>
                     <div class="time-row"><span class="lang-sv">Fredag – Lördag</span><span class="lang-en">Friday – Saturday</span> <span>12:00 – 01:00</span></div>
                 </div>
 
@@ -970,27 +1063,9 @@
     <div id="bookingModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeBookModal()">×</span>
-            <h2 class="lang-sv">BOKA BORD</h2>
-            <h2 class="lang-en">BOOK A TABLE</h2>
-            <form action="mailto:info@muchacho.se" method="post" enctype="text/plain">
-                <div class="form-group">
-                    <label class="lang-sv">Namn</label><label class="lang-en">Name</label>
-                    <input type="text" name="name" required placeholder="Ditt namn">
-                </div>
-                <div class="form-group">
-                    <label class="lang-sv">Telefon</label><label class="lang-en">Phone</label>
-                    <input type="tel" name="phone" required placeholder="070...">
-                </div>
-                <div class="form-group">
-                    <label class="lang-sv">Antal personer</label><label class="lang-en">Guests</label>
-                    <input type="number" name="guests" min="1" value="2">
-                </div>
-                <div class="form-group">
-                    <label class="lang-sv">Datum & Tid</label><label class="lang-en">Date & Time</label>
-                    <input type="datetime-local" name="date">
-                </div>
-                <button type="submit" class="btn-submit">SKICKA FÖRFRÅGAN</button>
-            </form>
+            <iframe src="https://widget.thefork.com/39ac3238-7869-41f1-adee-45867c734f47"
+                    allow="payment *"
+                    style="width: 100%; min-height:800px; border:none; overflow:scroll;"></iframe>
         </div>
     </div>
 
@@ -1025,7 +1100,7 @@
             setTimeout(() => {
                 document.getElementById('intro-screen').classList.add('hidden');
                 document.body.classList.add('intro-finished');
-            }, 4500); // 4.5 sekunder för att garantera att loggan syns
+            }, 4500);
         });
 
         // Navbar Scroll
