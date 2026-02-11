@@ -65,7 +65,8 @@
             width: 300px;
             max-width: 80%;
             opacity: 0;
-            animation: smokeReveal 3.5s ease-out forwards;
+            /* Animationen körs nu i 2.5 sekunder */
+            animation: smokeReveal 2.5s ease-out forwards;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             transform: translateZ(0);
@@ -205,6 +206,35 @@
                 color: var(--gold);
             }
 
+        /* --- MOBIL SPRÅK-KNAPP (NY) --- */
+        .mobile-lang-switch {
+            display: none; /* Dölj på dator */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+            .mobile-lang-switch span {
+                cursor: pointer;
+                opacity: 0.6;
+                transition: 0.3s;
+            }
+
+                .mobile-lang-switch span.active {
+                    opacity: 1;
+                    color: var(--gold);
+                }
+
         /* Knappar */
         .btn-nav {
             padding: 10px 20px;
@@ -225,6 +255,7 @@
             }
 
         .btn-book {
+            display: inline-block;
             padding: 12px 28px;
             background: linear-gradient(45deg, var(--gold), #b8860b);
             color: #000;
@@ -625,13 +656,11 @@
             justify-content: center;
         }
 
-        /* Justerad modal-content för bokningswidgeten */
         .modal-content {
             background-color: #111;
             border: 2px solid var(--gold);
             width: 95%;
             max-width: 600px;
-            /* För att hantera långa widgets på små skärmar: */
             max-height: 90vh;
             overflow-y: auto;
             padding: 10px;
@@ -640,7 +669,6 @@
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
         }
 
-        /* Specifik styling för Order Modal (om den behöver mer padding) */
         #orderModal .modal-content {
             padding: 40px;
             max-width: 500px;
@@ -743,6 +771,10 @@
                 display: flex;
             }
 
+            .mobile-lang-switch {
+                display: block;
+            }
+            /* VISA SPRÅK PÅ MOBIL */
             .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -784,6 +816,12 @@
 
     <div class="background-fixed"></div>
 
+    <div class="mobile-lang-switch">
+        <span id="mob-btn-se" class="active" onclick="setLanguage('se')">SWE</span>
+        |
+        <span id="mob-btn-eng" onclick="setLanguage('eng')">ENG</span>
+    </div>
+
     <nav id="navbar">
         <div class="nav-links">
             <a href="#meny"><span class="lang-sv">Meny</span><span class="lang-en">Menu</span></a>
@@ -801,9 +839,9 @@
                 <span class="lang-sv">BESTÄLL MAT</span><span class="lang-en">ORDER FOOD</span>
             </button>
 
-            <button class="btn-book" onclick="openBookModal()">
+            <a href="https://www.thefork.se/restaurang/muchacho-r286615" target="_blank" class="btn-book">
                 <span class="lang-sv">BOKA BORD</span><span class="lang-en">BOOK TABLE</span>
-            </button>
+            </a>
         </div>
     </nav>
 
@@ -1100,7 +1138,7 @@
             setTimeout(() => {
                 document.getElementById('intro-screen').classList.add('hidden');
                 document.body.classList.add('intro-finished');
-            }, 4500);
+            }, 2500); // ÄNDRAT TILL 2.5 SEKUNDER (2500ms)
         });
 
         // Navbar Scroll
@@ -1113,17 +1151,29 @@
         // Language
         function setLanguage(lang) {
             const body = document.body;
+            // Desktop
             const btnSe = document.getElementById('btn-se');
             const btnEng = document.getElementById('btn-eng');
+            // Mobile
+            const mobSe = document.getElementById('mob-btn-se');
+            const mobEng = document.getElementById('mob-btn-eng');
 
             if (lang === 'eng') {
                 body.classList.add('english-mode');
+                // Desktop
                 btnEng.classList.add('active');
                 btnSe.classList.remove('active');
+                // Mobile
+                if (mobEng) mobEng.classList.add('active');
+                if (mobSe) mobSe.classList.remove('active');
             } else {
                 body.classList.remove('english-mode');
+                // Desktop
                 btnSe.classList.add('active');
                 btnEng.classList.remove('active');
+                // Mobile
+                if (mobSe) mobSe.classList.add('active');
+                if (mobEng) mobEng.classList.remove('active');
             }
         }
 
