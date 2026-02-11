@@ -45,7 +45,7 @@
                 overflow-y: auto;
             }
 
-        /* --- 2. INTRO SPLASH SCREEN (MYSTISK RÖK) --- */
+        /* --- 2. INTRO SPLASH SCREEN --- */
         #intro-screen {
             position: fixed;
             top: 0;
@@ -60,12 +60,20 @@
             transition: opacity 1.5s ease-out, visibility 1.5s;
         }
 
+        /* HÄR ÄR DEN NYA KODEN FÖR LOGGAN
+           Vi använder translateZ(0) för att tvinga mobilen att rendera skarpt
+        */
         .intro-logo-img {
             width: 300px;
             max-width: 80%;
-            /* Här är den nya RÖK-animationen */
-            animation: smokeReveal 3s ease-out forwards;
-            opacity: 0; /* Börjar osynlig */
+            opacity: 0;
+            /* Animationen körs i 3.5 sekunder */
+            animation: smokeReveal 3.5s ease-out forwards;
+            /* Hårdvaruacceleration för mobiler */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform, opacity, filter;
         }
 
         #intro-screen.hidden {
@@ -74,22 +82,27 @@
             pointer-events: none;
         }
 
-        /* RÖK-EFFEKT ANIMATION */
+        /* NY ANIMATION: "CRYSTAL CLEAR"
+           Tar bort blur helt på slutet för att undvika suddighet på mobil
+        */
         @keyframes smokeReveal {
             0% {
                 opacity: 0;
                 transform: translateY(20px) scale(0.9);
-                filter: blur(15px) grayscale(100%);
+                filter: blur(20px) grayscale(100%);
             }
 
-            40% {
-                opacity: 1;
-                filter: blur(0px) grayscale(50%);
+            60% {
+                /* Redan här börjar vi göra den skarp */
+                opacity: 0.9;
+                filter: blur(2px) grayscale(20%);
             }
 
             100% {
+                opacity: 1;
                 transform: translateY(0) scale(1);
-                filter: blur(0px) grayscale(0%) drop-shadow(0 10px 20px #000);
+                /* VIKTIGT: Inget filter alls på slutet */
+                filter: none;
             }
         }
 
@@ -1012,7 +1025,7 @@
             setTimeout(() => {
                 document.getElementById('intro-screen').classList.add('hidden');
                 document.body.classList.add('intro-finished');
-            }, 4500); // <--- HÄR ÄR ÄNDRINGEN (ÖKAD TID)
+            }, 4500); // 4.5 sekunder för att garantera att loggan syns
         });
 
         // Navbar Scroll
