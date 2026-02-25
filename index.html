@@ -65,8 +65,8 @@
             width: 300px;
             max-width: 80%;
             opacity: 0;
-            /* Animationen körs nu i 2.5 sekunder */
-            animation: smokeReveal 2.5s ease-out forwards;
+            /* Animationen körs nu i 1.5 sekunder */
+            animation: smokeReveal 1.5s ease-out forwards;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             transform: translateZ(0);
@@ -148,7 +148,7 @@
         body.intro-finished nav {
             opacity: 1;
             transform: translateY(0);
-            transition: opacity 1s 1s, transform 1s 1s;
+            transition: opacity 0.8s 0.3s, transform 0.8s 0.3s;
         }
 
         nav.scrolled {
@@ -1139,7 +1139,7 @@
             setTimeout(() => {
                 document.getElementById('intro-screen').classList.add('hidden');
                 document.body.classList.add('intro-finished');
-            }, 2500); // 2.5 sekunder
+            }, 1500); // 1.5 sekunder
         });
 
         // Navbar Scroll
