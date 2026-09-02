@@ -506,6 +506,75 @@
                 transform: translateY(0);
             }
 
+        /* --- 7b. BRUNCH --- */
+        .brunch-intro {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #ddd;
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .brunch-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 900px) {
+            .brunch-details {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .brunch-detail {
+            border: 1px solid var(--gold-dim);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            background: rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+            .brunch-detail:hover {
+                border-color: var(--gold);
+                transform: translateY(-4px);
+            }
+
+        .brunch-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .brunch-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #fff;
+            line-height: 1.6;
+            display: block;
+        }
+
+        .brunch-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 700;
+            display: block;
+        }
+
+        .brunch-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
         /* --- 8. FOOTER --- */
         footer {
             background: #000;
@@ -828,6 +897,39 @@
                 width: 80%;
                 max-width: 350px;
             }
+
+            .brunch-intro {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 2rem;
+                padding: 0 5px;
+            }
+
+            .brunch-details {
+                gap: 1.2rem;
+            }
+
+            .brunch-detail {
+                padding: 1.5rem 1rem;
+            }
+
+            .brunch-label {
+                font-size: 0.85rem;
+                letter-spacing: 2px;
+                margin-bottom: 0.8rem;
+            }
+
+            .brunch-value {
+                font-size: 1rem;
+            }
+
+            .brunch-price {
+                font-size: 1.6rem;
+            }
+
+            .brunch-cta {
+                margin-top: 2rem;
+            }
         }
     </style>
 </head>
@@ -849,6 +951,7 @@
         <div class="nav-links">
             <a href="#meny"><span class="lang-sv">Meny</span><span class="lang-en">Menu</span></a>
             <a href="#varmratter"><span class="lang-sv">Varmrätter</span><span class="lang-en">Main Courses</span></a>
+            <a href="#brunch"><span class="lang-sv">Brunch</span><span class="lang-en">Brunch</span></a>
             <a href="#kontakt"><span class="lang-sv">Kontakt</span><span class="lang-en">Contact</span></a>
         </div>
         <div class="nav-actions">
@@ -997,7 +1100,7 @@
             </div>
 
             <div class="section-header fade-in" id="varmratter" style="margin-top: 6rem;">
-                <h2>BAZAR</h2>
+                <h2><span class="lang-sv">VARMRÄTTER</span><span class="lang-en">MAIN COURSES</span></h2>
                 <div class="divider"></div>
                 <p class="lang-sv">Comidas calientes / Varmrätter</p>
                 <p class="lang-en">Comidas calientes / Main Courses</p>
@@ -1074,6 +1177,50 @@
         </div>
     </div>
 
+    <div class="menu-container" id="brunch">
+        <div class="glass-card fade-in">
+            <div class="section-header">
+                <h2>BRUNCH</h2>
+                <div class="divider"></div>
+                <p class="lang-sv">All you can eat – hela vår tapasmeny</p>
+                <p class="lang-en">All you can eat – our entire tapas menu</p>
+            </div>
+
+            <div class="brunch-intro">
+                <p class="lang-sv">Starta helgen på bästa sätt med en oändlig smakresa. Nu lanserar vi vår nya brunch där hela vår tapasmeny står till ditt förfogande. Konceptet är enkelt – vi kör "all you can eat", vilket betyder att du kan beställa in precis hur mycket du orkar och njuta av alla dina favoriter.</p>
+                <p class="lang-en">Start the weekend on the best note with an endless flavor journey. We are launching our new brunch where our entire tapas menu is at your disposal. The concept is simple – it is "all you can eat", meaning you can order as much as you like and enjoy all your favorites.</p>
+            </div>
+
+            <div class="brunch-details">
+                <div class="brunch-detail">
+                    <span class="brunch-label"><span class="lang-sv">NÄR</span><span class="lang-en">WHEN</span></span>
+                    <span class="brunch-value">
+                        <span class="lang-sv">Fredagar &amp; Lördagar<br>kl. 12:00 – 15:30</span>
+                        <span class="lang-en">Fridays &amp; Saturdays<br>12:00 – 15:30</span>
+                    </span>
+                </div>
+                <div class="brunch-detail">
+                    <span class="brunch-label"><span class="lang-sv">PRIS</span><span class="lang-en">PRICE</span></span>
+                    <span class="brunch-price">349 kr</span>
+                    <span class="brunch-value"><span class="lang-sv">per person</span><span class="lang-en">per person</span></span>
+                </div>
+                <div class="brunch-detail">
+                    <span class="brunch-label"><span class="lang-sv">BOKNING</span><span class="lang-en">BOOKING</span></span>
+                    <span class="brunch-value">
+                        <span class="lang-sv">Boka ditt bord som vanligt här på hemsidan och skriv "Brunch" i rutan för särskilda önskemål.</span>
+                        <span class="lang-en">Book your table as usual here on the website and write "Brunch" in the special requests field.</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="brunch-cta">
+                <a href="https://www.thefork.se/restaurang/muchacho-r286615" target="_blank" class="btn-book">
+                    <span class="lang-sv">BOKA BRUNCH</span><span class="lang-en">BOOK BRUNCH</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <footer id="kontakt">
         <div class="footer-content">
             <div class="contact-card">
@@ -1095,7 +1242,7 @@
                     </div>
 
                     <div style="margin-top:15px;">
-                        <a href="mailto:muchachotapas@gmail.com" style="color:var(--gold); text-decoration:none;">muchachotapas@gmail.com</a>
+                        <a href="mailto:info@muchachotapas.se" style="color:var(--gold); text-decoration:none;">info@muchachotapas.se</a>
                     </div>
                 </div>
 
@@ -1144,6 +1291,7 @@
 
     <div class="mobile-action-bar">
         <a href="#meny" class="action-btn"><i class="fas fa-book-open"></i> <span class="lang-sv">Meny</span><span class="lang-en">Menu</span></a>
+        <a href="#brunch" class="action-btn"><i class="fas fa-mug-hot"></i> <span class="lang-sv">Brunch</span><span class="lang-en">Brunch</span></a>
         <a href="tel:0737735304" class="action-btn"><i class="fas fa-phone"></i> <span class="lang-sv">Ring</span><span class="lang-en">Call</span></a>
 
         <div class="action-btn" onclick="openOrderModal()"><i class="fas fa-motorcycle"></i> <span class="lang-sv">Beställ</span><span class="lang-en">Order</span></div>
