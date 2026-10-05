@@ -755,18 +755,34 @@
         }
 
         .close-modal {
-            position: absolute;
+            position: sticky;
             top: 10px;
-            right: 20px;
-            color: #aaa;
-            font-size: 28px;
+            margin-left: auto;
+            margin-right: 4px;
+            margin-bottom: -40px;
+            display: block;
+            width: 38px;
+            height: 38px;
+            line-height: 36px;
+            text-align: center;
+            background: rgba(17, 17, 17, 0.92);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 50%;
+            color: #ccc;
+            font-size: 22px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 10;
+            z-index: 20;
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
             .close-modal:hover {
                 color: var(--gold);
+                border-color: var(--gold);
+                transform: scale(1.08);
             }
 
         .modal h2 {
@@ -804,6 +820,145 @@
 
         .btn-foodora {
             background-color: var(--foodora-pink);
+        }
+
+        /* --- 9b. DRYCKMENY CTA + MODAL --- */
+        .drinks-cta {
+            text-align: center;
+            margin: 4rem 0 1rem;
+        }
+
+        .drinks-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.1rem 2.4rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.22));
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            letter-spacing: 2.5px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            text-transform: uppercase;
+        }
+
+            .drinks-trigger:hover {
+                background: linear-gradient(135deg, var(--gold), #b8961f);
+                color: #111;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+            }
+
+        .drinks-trigger i {
+            font-size: 1.5rem;
+            animation: bottleTilt 3.5s ease-in-out infinite;
+            transform-origin: 50% 85%;
+        }
+
+        @keyframes bottleTilt {
+            0%, 100% { transform: rotate(-12deg); }
+            50% { transform: rotate(12deg); }
+        }
+
+        #drinksModal .modal-content {
+            max-width: 1100px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            background: #0a0a0a;
+        }
+
+        .drinks-modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+            .drinks-modal-header h2 {
+                margin-bottom: 0.3rem;
+            }
+
+            .drinks-modal-header .divider {
+                margin: 0.6rem auto;
+            }
+
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .drinks-section h3 {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+            padding-bottom: 0.4rem;
+            margin: 1.4rem 0 0.9rem;
+            text-transform: uppercase;
+        }
+
+            .drinks-section h3:first-child {
+                margin-top: 0;
+            }
+
+        .drinks-subheader {
+            color: #c9a85c;
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            margin: 1rem 0 0.4rem;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .drink {
+            margin-bottom: 0.7rem;
+        }
+
+        .drink-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .drink-name {
+            color: #e8e0cc;
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+
+        .drink-price {
+            color: var(--gold);
+            font-weight: 700;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .drink-desc {
+            display: block;
+            font-size: 0.78rem;
+            color: #9a9385;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .drinks-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            #drinksModal .modal-content {
+                padding: 2rem 1.2rem;
+            }
+
+            .drinks-trigger {
+                font-size: 1rem;
+                padding: 1rem 1.8rem;
+                letter-spacing: 1.5px;
+            }
         }
 
         /* --- 10. MOBIL ACTION BAR --- */
@@ -952,6 +1107,7 @@
             <a href="#meny"><span class="lang-sv">Meny</span><span class="lang-en">Menu</span></a>
             <a href="#varmratter"><span class="lang-sv">Varmrätter</span><span class="lang-en">Main Courses</span></a>
             <a href="#brunch"><span class="lang-sv">Brunch</span><span class="lang-en">Brunch</span></a>
+            <a href="#" onclick="event.preventDefault(); openDrinksModal();"><span class="lang-sv">Dryckmeny</span><span class="lang-en">Drinks</span></a>
             <a href="#kontakt"><span class="lang-sv">Kontakt</span><span class="lang-en">Contact</span></a>
         </div>
         <div class="nav-actions">
@@ -1181,6 +1337,14 @@
                     <span class="dish-desc lang-en">Spanish french toast with vanilla ice cream, chocolate sauce and pistachios.</span>
                 </div>
             </div>
+
+            <div class="drinks-cta fade-in">
+                <button class="drinks-trigger" onclick="openDrinksModal()">
+                    <i class="fas fa-wine-bottle"></i>
+                    <span class="lang-sv">Se dryckmenyn</span>
+                    <span class="lang-en">View drinks menu</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -1297,6 +1461,116 @@
         </div>
     </div>
 
+    <div id="drinksModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDrinksModal()">×</span>
+            <div class="drinks-modal-header">
+                <h2><span class="lang-sv">DRYCKMENY</span><span class="lang-en">DRINKS MENU</span></h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="drinks-grid">
+                <div>
+                    <div class="drinks-section">
+                        <h3>Cocktails</h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Paloma</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Tequila, grapefrukt, lime</span><span class="drink-desc lang-en">Tequila, grapefruit, lime</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Spicy Margarita</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Tequila, Cointreau, lime, jalapeño</span><span class="drink-desc lang-en">Tequila, Cointreau, lime, jalapeño</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Margarita</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Tequila, Cointreau, lime</span><span class="drink-desc lang-en">Tequila, Cointreau, lime</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Spritz – välj mellan</span><span class="lang-en">Spritz – choose</span></span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Aperol, Campari, Limoncello</span><span class="drink-desc lang-en">Aperol, Campari, Limoncello</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Negroni</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Gin, Campari, söt vermouth</span><span class="drink-desc lang-en">Gin, Campari, sweet vermouth</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Sour – välj mellan</span><span class="lang-en">Sour – choose</span></span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Whiskey, Amaretto, Pisco</span><span class="drink-desc lang-en">Whiskey, Amaretto, Pisco</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Mojito – Clasico / Raspberry</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Ljus rom, lime, mynta</span><span class="drink-desc lang-en">Light rum, lime, mint</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Piña Colada</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Ljus rom, Malibu, ananas</span><span class="drink-desc lang-en">Light rum, Malibu, pineapple</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Frozen Daiquiri</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Ljus rom, limejuice, sockerlag, krossad is</span><span class="drink-desc lang-en">Light rum, lime juice, sugar syrup, crushed ice</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Citrus Passion</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Ljus rom, limejuice, passionsjuice, sockerlag</span><span class="drink-desc lang-en">Light rum, lime juice, passionfruit, sugar syrup</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Sex on the Beach</span><span class="drink-price">135 kr</span></div><span class="drink-desc lang-sv">Vodka, persikolikör, apelsin, tranbär</span><span class="drink-desc lang-en">Vodka, peach liqueur, orange, cranberry</span></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Alkoholfria drinkar</span><span class="lang-en">Virgin Drinks</span></h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Citrus Passion</span><span class="drink-price">89 kr</span></div><span class="drink-desc lang-sv">Citron, passionsjuice, tonic</span><span class="drink-desc lang-en">Lemon, passionfruit, tonic</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Lime Strawberry Splash</span><span class="drink-price">89 kr</span></div><span class="drink-desc lang-sv">Lime, jordgubb, citron, sprite</span><span class="drink-desc lang-en">Lime, strawberry, lemon, Sprite</span></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3>Sangría</h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Röd eller vit · glas</span><span class="lang-en">Red or white · glass</span></span><span class="drink-price">75 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Röd eller vit · kanna</span><span class="lang-en">Red or white · pitcher</span></span><span class="drink-price">335 kr</span></div></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Öl · Cerveza</span><span class="lang-en">Beer · Cerveza</span></h3>
+                        <p class="drinks-subheader"><span class="lang-sv">Öl på fat (35 cl / 50 cl)</span><span class="lang-en">Beer on tap (35 cl / 50 cl)</span></p>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Fat 21</span><span class="drink-price">55 / 65 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">San Miguel</span><span class="drink-price">58 / 69 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Bron ekologisk ljuslager</span><span class="lang-en">Bron organic lager</span></span><span class="drink-price">59 / 69 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Brewdog Punk IPA</span><span class="drink-price">60 / 75 kr</span></div></div>
+
+                        <p class="drinks-subheader"><span class="lang-sv">Öl på flaska</span><span class="lang-en">Bottled beer</span></p>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Pils Urquell / Newcastle / Peroni</span><span class="drink-price">75 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Punk IPA</span><span class="drink-price">79 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Weihenstephaner 50 cl</span><span class="drink-price">79 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">1856 Glutenfri</span><span class="lang-en">1856 Gluten-free</span></span><span class="drink-price">79 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Bryggmästare Premium Gold / Dark</span><span class="drink-price">79 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Eriksberg / Småland 50 cl</span><span class="drink-price">75 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Zlatopramen 50 cl</span><span class="drink-price">79 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Bron IPA 50 cl</span><span class="drink-price">79 kr</span></div></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Mousserande</span><span class="lang-en">Sparkling</span></h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Abbazia Extra Dry Prosecco</span><span class="drink-price">85 / 445 kr</span></div><span class="drink-desc lang-sv">Italienskt · glas / flaska</span><span class="drink-desc lang-en">Italian · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Jaume Serra Cava</span><span class="drink-price">75 / 395 kr</span></div><span class="drink-desc lang-sv">Spanskt · glas / flaska</span><span class="drink-desc lang-en">Spanish · glass / bottle</span></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Vitt vin</span><span class="lang-en">White wine</span></h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Botanicum Iberloum 12,5 %</span><span class="drink-price">69 / 285 kr</span></div><span class="drink-desc lang-sv">Husets vin · glas / flaska</span><span class="drink-desc lang-en">House wine · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Montgravel Blanc 12 %</span><span class="drink-price">75 / 339 kr</span></div><span class="drink-desc lang-sv">Franskt · glas / flaska</span><span class="drink-desc lang-en">French · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Masso di Mezzo Pinot Grigio 12,5 %</span><span class="drink-price">85 / 335 kr</span></div><span class="drink-desc lang-sv">Italienskt · glas / flaska</span><span class="drink-desc lang-en">Italian · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Dopff Riesling Cuvée 12,5 %</span><span class="drink-price">110 / 495 kr</span></div><span class="drink-desc lang-sv">Franskt · glas / flaska</span><span class="drink-desc lang-en">French · glass / bottle</span></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Rött vin</span><span class="lang-en">Red wine</span></h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Botanicum Iberloum 12,5 %</span><span class="drink-price">69 / 285 kr</span></div><span class="drink-desc lang-sv">Husets vin · glas / flaska</span><span class="drink-desc lang-en">House wine · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Montgravel Rouge 13 %</span><span class="drink-price">75 / 339 kr</span></div><span class="drink-desc lang-sv">Franskt · glas / flaska</span><span class="drink-desc lang-en">French · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Chateau de Chalhalogne Rouge 13 %</span><span class="drink-price">85 / 335 kr</span></div><span class="drink-desc lang-sv">Franskt · glas / flaska</span><span class="drink-desc lang-en">French · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Clivus Valpolicella Ripasso 13,5 %</span><span class="drink-price">110 / 495 kr</span></div><span class="drink-desc lang-sv">Italienskt · glas / flaska</span><span class="drink-desc lang-en">Italian · glass / bottle</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Campo Viejo Rioja</span><span class="drink-price">85 / 335 kr</span></div><span class="drink-desc lang-sv">Spanskt · glas / flaska</span><span class="drink-desc lang-en">Spanish · glass / bottle</span></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Cider · Sidra</span><span class="lang-en">Cider · Sidra</span></h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Rekorderlig päroncider 33 / 50 cl</span><span class="lang-en">Rekorderlig pear cider 33 / 50 cl</span></span><span class="drink-price">55 / 65 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Somersby Piña Colada 33 cl</span><span class="drink-price">75 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Breezer</span><span class="drink-price">75 kr</span></div><span class="drink-desc lang-sv">Fråga personalen om smaker</span><span class="drink-desc lang-en">Ask staff for flavours</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Briska</span><span class="drink-price">75 kr</span></div><span class="drink-desc lang-sv">Fråga personalen om smaker</span><span class="drink-desc lang-en">Ask staff for flavours</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Kopparberg Apple Dry 33 cl</span><span class="drink-price">65 kr</span></div></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3><span class="lang-sv">Alkoholfritt</span><span class="lang-en">Non-alcoholic</span></h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Kaffe / Te</span><span class="lang-en">Coffee / Tea</span></span><span class="drink-price">39 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Läsk</span><span class="lang-en">Soft drinks</span></span><span class="drink-price">39 kr</span></div><span class="drink-desc">Cola · Cola Zero · Fanta · 7UP</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Mineralvatten</span><span class="lang-en">Mineral water</span></span><span class="drink-price">39 kr</span></div></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name"><span class="lang-sv">Alkoholfri öl / cider</span><span class="lang-en">Non-alcoholic beer / cider</span></span><span class="drink-price">49 kr</span></div></div>
+                    </div>
+
+                    <div class="drinks-section">
+                        <h3>After Dinner</h3>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Irish Coffee</span><span class="drink-price">149 kr</span></div><span class="drink-desc lang-sv">Kaffe, irländsk whisky, grädde</span><span class="drink-desc lang-en">Coffee, Irish whiskey, cream</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Kaffe Karlsson</span><span class="drink-price">149 kr</span></div><span class="drink-desc lang-sv">Kaffe, Cointreau, Baileys, grädde</span><span class="drink-desc lang-en">Coffee, Cointreau, Baileys, cream</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">Kaffe Baileys</span><span class="drink-price">149 kr</span></div><span class="drink-desc lang-sv">Kaffe, Baileys, grädde</span><span class="drink-desc lang-en">Coffee, Baileys, cream</span></div>
+                        <div class="drink"><div class="drink-row"><span class="drink-name">French Coffee</span><span class="drink-price">149 kr</span></div><span class="drink-desc lang-sv">Kaffe, cognac, grädde</span><span class="drink-desc lang-en">Coffee, cognac, cream</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="mobile-action-bar">
         <a href="#meny" class="action-btn"><i class="fas fa-book-open"></i> <span class="lang-sv">Meny</span><span class="lang-en">Menu</span></a>
         <a href="#brunch" class="action-btn"><i class="fas fa-mug-hot"></i> <span class="lang-sv">Brunch</span><span class="lang-en">Brunch</span></a>
@@ -1364,9 +1638,13 @@
         function openOrderModal() { document.getElementById('orderModal').style.display = 'flex'; }
         function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
 
+        function openDrinksModal() { document.getElementById('drinksModal').style.display = 'flex'; }
+        function closeDrinksModal() { document.getElementById('drinksModal').style.display = 'none'; }
+
         window.onclick = function (event) {
             if (event.target == document.getElementById('bookingModal')) closeBookModal();
             if (event.target == document.getElementById('orderModal')) closeOrderModal();
+            if (event.target == document.getElementById('drinksModal')) closeDrinksModal();
         }
 
         // Animation
